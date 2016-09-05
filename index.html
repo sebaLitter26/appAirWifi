@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/indexok.css" />
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+	<script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/jquery1.10.1.js"></script>
+	<script type="text/javascript" src="js/jquery.placeholder.min.js"></script>
+	<script type="text/javascript" src="js/save.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+		/*
+			$("#inline").on("click", function() {
+				$('input[name="newsletter"]').trigger('click');
+			});
+			$('input[name="newsletter"]').on("click", function() {
+				$('input[name="newsletter"]').trigger('click');
+			});
+			*/
+		var relativ = "http://192.168.100.155:82/wifimicrochip/";
+		function duracion() {
+
+			$.ajax({
+			  type: "POST",
+			  url: relativ+"action/duracion.php",
+			  data: "var1=o"
+			})
+			  .done(function( msg ) {
+			 
+				$("#duracion").html(msg);
+			});
+		  
+		}
+		duracion();
+		  
+		  
+		function modo() {
+
+			$.ajax({
+			  type: "POST",
+			  url: relativ+"action/modo.php",
+			  data: "var1=o"
+			})
+			  .done(function( msg ) { 
+				$("#modo").html(msg);
+			});  
+		}
+		modo();
+
+		function temperatura() {
+
+			$.ajax({
+			  type: "POST",
+			  url: relativ+"action/temperatura.php",
+			  data: "var1=o"
+			})
+			  .done(function( msg ) { 
+				$("#temperatura").html(msg);
+			});  
+		}
+		temperatura();
+
+		function velocidad() {
+
+			$.ajax({
+			  type: "POST",
+			  url: relativ+"action/velocidad.php",
+			  data: "var1=o"
+			})
+			  .done(function( msg ) { 
+				$("#velocidad").html(msg);
+			});  
+		}
+		velocidad();
+		  
+		   
+		 function getConcesionario(id_ciudad) {
+		 
+			$.ajax({
+			  type: "POST",
+			  url: relativ+"action/concesionarios.php",
+			  data: "id_ciudad=" + id_ciudad
+			})
+			  .done(function( msg ) {
+			  //alert(msg);
+				$("#concesionario").html(msg);
+			  });
+		 }
+    </script>
+	
+    <title>Aire Acondicionado</title>
+</head>
+
+<body>
+    <div class="app">
+		<div style='height: 50px; width: 45%; float: left;'>
+        <h2 class="center">
+            AIRE ACONDICIONADO
+        </h2>
+		</div>
+		<div style='height: 50px; width: 45%; float: left;'>
+			<a class="send" style="font-size: 30px; text-decoration:none;" href="calendar/index.html">Registros</a>
+		</div>
+	<br><br>
+	
+	<div id="success" class="alert-success success"> 
+        <h2 class="center">
+            SUS DATOS FUERON ENVIADOS CORRECTAMENTE.<br>
+            GRACIAS
+        </h2>
+    </div>
+	<div id="success-smallscreen" class="alert-success-smallscreen success">
+		
+		<h2 class="center">
+            SUS DATOS FUERON ENVIADOS CORRECTAMENTE.<br>
+            GRACIAS
+        </h2>
+        <!--<button type="reset" class="send" value="Limpar">Limpiar</button>-->
+		<a class="send" style="font-size: 30px; text-decoration:none;" href="index.html">Inicio</a>
+	</div>
+	
+	
+	<br><br>
+	<form id="formulario" method="POST">				
+		<div class="loading">Enviando datos..!!</div>
+		<!--
+		<div class="control">
+			<span class='name'>Nombres *</span>
+			<input type="text" name="name" id="name" placeholder="Ingrese sus nombres">
+            <input type="hidden" name="from" id="from" value="allusers">
+		</div>
+		<div class="control">
+			<span class='lastname'>Apellidos *</span>
+			<input type="text" name="lastname" id="lastname" placeholder="Ingrese sus apellidos ">
+		</div>
+		
+		<div class="control">
+			<span class='ci'>C.I. *</span>
+			<input type="text" maxlength="10" name="ci" id="ci" placeholder="1716232167 ">
+		</div>
+                <div class="control">
+			<span class='telefono'>Teléfono *</span>
+			<input type="text" name="telefono" id="telefono" placeholder="0978123456">
+		</div>
+		<div class="control">
+			<span class='email'>Email *</span>
+			<input type="text" name="email" id="email" placeholder="email@ejemplo.com ">
+		</div>
+		-->	
+        <div class="control">
+            <span class='duracion'>Duracion *</span>
+			<select name="duracion" id="duracion">
+				<option value="0">Seleccione Duracion</option>     
+			</select>
+        </div>
+        <div class="control">
+			<span class='temperatura'>Temperatura *</span>
+			<select name="temperatura" id="temperatura">
+				<option value="0">-Seleccione Temperatura-</option> 
+			</select>
+		</div>
+		<div class="control">
+			<span class='velocidad'>Velocidad *</span>
+			<select name="velocidad" id="velocidad">
+				<option value="0">-Seleccione Velocidad-</option> 
+			</select>
+		</div>
+        <div class="control">
+			<span class='modo'>Modo *</span>
+			<select name="modo" id="modo">
+				<option value="">-Seleccionar Modo-</option>
+            </select>
+		</div>
+		<div class="control multiple">
+			<span class='programa' id="programa">Programa *</span>
+			<div style='height: 60px; width: 40%; float: left;'>
+				<p><input type="radio" name="programa_group" value="Invierno Humedo" id="programa1" class="programa_group" /><label for="1">Invierno Humedo</label></p>
+				<p><input type="radio" name="programa_group" value="Verano Intenso" id="programa2" class="programa_group" /><label for="2">Verano Intenso</label></p>
+			</div>
+			<div style='height: 60px; width: 40%;  float: left;'>
+				<p><input type="radio" name="programa_group" value="Primavera Seca" id="programa3" class="programa_group" /><label for="3">Primavera Seca</label></p>
+				<p><input type="radio" name="programa_group" value="Otoño Nublado" id="programa4" class="programa_group" /><label for="4">Otoño Nublado</label></p>
+			</div>
+		</div>
+        <!--        <div class="control inline">
+                    <input type="checkbox" name="acepto" checked="checked" id="acepto">
+                    <span class='acepto'>Acepto ser contacto por Chevrolet</span>			
+		</div>
+        <div id="inline" class="control inline" style="width:95%;">
+                    <input type="checkbox" name="newsletter" checked="checked" id="newsletter">
+                    <span class='acepto'>Acepto recibir más información de Chevrolet</span>                    
+		</div>
+		
+        <div class="campos-obrigatorios">* Campos obligatorios</div>
+		-->
+		<div class="buttons control full">
+			<!--<button type="reset" class="send" value="Limpar">Limpiar</button>-->
+			<button type="submit" class="send btnsave" value="Enviar">Enviar</button>
+		</div>
+	</form>
+    </div>
+    
+</body>
+
+</html>
