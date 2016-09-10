@@ -1,4 +1,127 @@
 
+/*
+	$("#inline").on("click", function() {
+		$('input[name="newsletter"]').trigger('click');
+	});
+	$('input[name="newsletter"]').on("click", function() {
+		$('input[name="newsletter"]').trigger('click');
+	});
+	*/
+
+$( document ).ready(function() {
+    
+	
+	$.ajax({
+	  type: "POST",
+	  url: "consu.php",
+	  data: "var1=o"
+	})
+	  .done(function( msg ) {
+	 
+		//console.log( msg );
+		var i , valor_actual, estado_actual;
+		var estado_actual = msg.split("|");
+		//console.log( "\nres0: " + estado_actual[0]+ " \nres1: " + estado_actual[1]+ " \nres2: " + estado_actual[2]+ " \nres3: " + estado_actual[3]+ " \nres4: " + estado_actual[4] );
+		
+		for (i = 1; i < estado_actual.length ; ++i) {
+			valor_actual = obtener_valor(estado_actual[i]);
+			
+			switch (i){							//|TEMPERATURA=24|MODO=Enfriar|VELOCIDAD=80|DURACION=60|
+				case 1:  //tiempo
+					temperatura(valor_actual);
+					break;
+				case 2:  //modo
+					modo(valor_actual);
+					break;
+				case 3:  //velocidad
+					velocidad(valor_actual);
+					break;
+				case 4:  //duracion
+					duracion(valor_actual);
+					break;
+				default:
+					//alert("Error: NO se encontro valor");
+			}
+		}
+		
+	});
+	
+});
+
+function obtener_valor( msg )
+{
+	var valor = msg.split("=");
+	return valor[1];
+}
+
+function temperatura(valor) {
+	//console.log( "Temp: " + valor );
+	$.ajax({
+	  type: "POST",
+	  url: "action/temperatura.php",
+	  data: "var1=" + valor
+	})
+	  .done(function( msg ) { 
+		$("#temperatura").html(msg);
+	});  
+}
+//temperatura();
+
+function modo(valor) {
+	//console.log( "modo: " + valor );
+	$.ajax({
+	  type: "POST",
+	  url: "action/modo.php",
+	  data: "var1=" + valor
+	})
+	  .done(function( msg ) { 
+		$("#modo").html(msg);
+	});  
+}
+//modo();
+
+function velocidad(valor) {
+	//console.log( "vel: " + valor );
+	$.ajax({
+	  type: "POST",
+	  url: "action/velocidad.php",
+	  data: "var1=" + valor
+	})
+	  .done(function( msg ) { 
+		$("#velocidad").html(msg);
+	});  
+}
+//velocidad();
+
+function duracion(valor) {
+	//console.log( "duracion: " + valor );
+	$.ajax({
+	  type: "POST",
+	  url: "action/duracion.php",
+	  data: "var1=" + valor
+	})
+	  .done(function( msg ) {
+	 
+		$("#duracion").html(msg);
+	});
+  
+}
+//duracion();
+  
+   
+ function getConcesionario(id_ciudad) {
+ 
+	$.ajax({
+	  type: "POST",
+	  url: "action/concesionarios.php",
+	  data: "id_ciudad=" + id_ciudad
+	})
+	  .done(function( msg ) {
+	  //alert(msg);
+		$("#concesionario").html(msg);
+	  });
+	 }
+
 
 $(function () {
 
@@ -61,7 +184,7 @@ $(function () {
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: 'http://192.168.100.155:82/wifimicrochip/action/save.php',
+                url: 'http://186.158.253.59:82/wifimicrochip/action/save.php',
                 data: 'task=save&' + datos,
                 success: function (msg) {
                     $("#formulario .loading").hide();

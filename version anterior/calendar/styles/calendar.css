@@ -1,0 +1,67 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20/08/2014, 12:05:47
+    Author     : sebastian.perez
+*/
+
+html, body{
+    margin:0px;
+    padding:0px;
+    height:100%;
+    overflow:hidden;
+}
+/*event in day or week view*/
+.dhx_cal_event.nomio_event div{
+    background:#CCC !important; 
+    color:#000 !important;
+}
+
+.dhx_cal_event.nomio_event .dhx_body{
+    background:#CCC url('../images/disabled.png') 95% 5% no-repeat !important; 
+}
+
+.dhx_cal_event .dhx_body{
+    background:#6140a6 url('../images/edit.png') 98% 2% no-repeat !important;
+}
+/*multi-day event in month view*/
+.dhx_cal_event_line.nomio_event{
+    background-color:#ccc !important; 
+    color:#000 !important;
+}
+/*event with fixed time, in month view*/
+.dhx_cal_event_clear.nomio_event{
+    color:#ccc !important;
+}
+
+.dhx_cal_event {
+    z-index: 1;
+    cursor: pointer;
+}
+.highlighted_timespan {
+    background: #e6dff0;
+    cursor: pointer;
+    z-index: 0;
+    text-align:center;
+    color:#4f4f4f;
+}
+.highlighted_timespan:after {
+    content:'Nueva reserva';
+}
+
+div.dhx_cal_light div.dhx_cal_larea div.dhx_wrap_section:nth-of-type(2),
+div.dhx_cal_light div.dhx_cal_larea div.dhx_wrap_section:nth-of-type(3),
+div.dhx_cal_light div.dhx_cal_larea div.dhx_wrap_section div.dhx_section_time input.dhx_readonly:last-of-type {
+    display:none !important;
+}
+
+h2.titulo {
+    line-height: 30px;
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    font-size: 22px;
+}
