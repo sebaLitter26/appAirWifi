@@ -1,4 +1,6 @@
 
+
+var relativ = "http://186.158.253.59:82/wifimicrochip/";
 /*
 	$("#inline").on("click", function() {
 		$('input[name="newsletter"]').trigger('click');
@@ -13,7 +15,7 @@ $( document ).ready(function() {
 	
 	$.ajax({
 	  type: "POST",
-	  url: "consu.php",
+	  url: relativ+"consu.php",
 	  data: "var1=o"
 	})
 	  .done(function( msg ) {
@@ -58,7 +60,7 @@ function temperatura(valor) {
 	//console.log( "Temp: " + valor );
 	$.ajax({
 	  type: "POST",
-	  url: "action/temperatura.php",
+	  url: relativ+"action/temperatura.php",
 	  data: "var1=" + valor
 	})
 	  .done(function( msg ) { 
@@ -71,7 +73,7 @@ function modo(valor) {
 	//console.log( "modo: " + valor );
 	$.ajax({
 	  type: "POST",
-	  url: "action/modo.php",
+	  url: relativ+"action/modo.php",
 	  data: "var1=" + valor
 	})
 	  .done(function( msg ) { 
@@ -84,7 +86,7 @@ function velocidad(valor) {
 	//console.log( "vel: " + valor );
 	$.ajax({
 	  type: "POST",
-	  url: "action/velocidad.php",
+	  url: relativ+"action/velocidad.php",
 	  data: "var1=" + valor
 	})
 	  .done(function( msg ) { 
@@ -97,7 +99,7 @@ function duracion(valor) {
 	//console.log( "duracion: " + valor );
 	$.ajax({
 	  type: "POST",
-	  url: "action/duracion.php",
+	  url: relativ+"action/duracion.php",
 	  data: "var1=" + valor
 	})
 	  .done(function( msg ) {
@@ -113,7 +115,7 @@ function duracion(valor) {
  
 	$.ajax({
 	  type: "POST",
-	  url: "action/concesionarios.php",
+	  url: relativ+"action/concesionarios.php",
 	  data: "id_ciudad=" + id_ciudad
 	})
 	  .done(function( msg ) {
@@ -184,7 +186,7 @@ $(function () {
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: 'http://186.158.253.59:82/wifimicrochip/action/save.php',
+                url: relativ+'/action/save.php',
                 data: 'task=save&' + datos,
                 success: function (msg) {
                     $("#formulario .loading").hide();
