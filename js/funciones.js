@@ -1,6 +1,7 @@
 
 
-var relativ = "http://186.158.253.59:82/wifimicrochip/";
+//var relativ = "http://186.158.253.59:82/wifimicrochip/";    //global
+var relativ = "http://192.168.100.155:82/wifimicrochip/";    //local
 /*
 	$("#inline").on("click", function() {
 		$('input[name="newsletter"]').trigger('click');
