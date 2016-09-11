@@ -2,7 +2,6 @@
 
 //var relativ = "http://186.158.253.59:82/wifimicrochip/";    //global
 var relativ = "http://localhost:82/wifimicrochip/";    //local
-alert(relativ);
 	
 	/*
 	$("#inline").on("click", function() {
@@ -22,8 +21,8 @@ $( document ).ready(function() {
 	  data: "var1=o"
 	})
 	  .done(function( msg ) {
-	 
-		//console.log( msg );
+		alert(msg);
+		console.log( msg );
 		var i , valor_actual, estado_actual;
 		var estado_actual = msg.split("|");
 		//console.log( "\nres0: " + estado_actual[0]+ " \nres1: " + estado_actual[1]+ " \nres2: " + estado_actual[2]+ " \nres3: " + estado_actual[3]+ " \nres4: " + estado_actual[4] );
