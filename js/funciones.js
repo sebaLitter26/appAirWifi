@@ -2,7 +2,9 @@
 
 //var relativ = "http://186.158.253.59:82/wifimicrochip/";    //global
 var relativ = "http://localhost:82/wifimicrochip/";    //local
-/*
+alert(relativ);
+	
+	/*
 	$("#inline").on("click", function() {
 		$('input[name="newsletter"]').trigger('click');
 	});
